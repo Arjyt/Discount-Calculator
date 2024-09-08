@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator</title>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        
+        .calculator {
+            background: linear-gradient(135deg, #3a86ff, #8338ec);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0px 8px 30px rgba(0,0,0,0.2);
+            width: 350px;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .input-group, .slider-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #e0e0e0;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #ffffff;
+            border-radius: 5px;
+            height: 8px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background-color: #8338ec;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        .slider-group output {
+            display: block;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            color: #ffbe0b;
+            margin-top: 10px;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffbe0b;
+            margin-top: 25px;
+        }
+
+        .result span {
+            font-size: 28px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2>Discount Calculator</h2>
+    
+    <div class="input-group">
+        <label for="amount">Enter Amount</label>
+        <input type="number" id="amount" placeholder="Enter amount..." oninput="calculateDiscount()">
+    </div>
+    
+    <div class="slider-group">
+        <label for="discountRate">Discount Rate (%)</label>
+        <input type="range" id="discountRate" min="0" max="100" value="10" oninput="calculateDiscount()">
+        <output id="discountValue">10%</output>
+    </div>
+    
+    <div class="result">
+        Final Amount: <span id="finalAmount">&#8377;0.00</span>
+    </div>
+</div>
+
+<script>
+    function calculateDiscount() {
+        const amount = parseFloat(document.getElementById('amount').value) || 0;
+        const discountRate = parseFloat(document.getElementById('discountRate').value);
+        
+    
+        document.getElementById('discountValue').textContent = discountRate + "%";
+        
+        
+        const discount = amount * (discountRate / 100);
+        const finalAmount = amount - discount;
+        
+        document.getElementById('finalAmount').innerHTML = "&#8377;" + finalAmount.toFixed(2);
+
+    }
+</script>
+
+</body>
+</html>
